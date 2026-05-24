@@ -13,6 +13,7 @@ export type PostFrontmatter = {
   publishedAt: string;
   updatedAt: string;
   author: string;
+  coverImage?: string; // /images/posts/xxx.jpg など
 };
 
 export type Post = {
