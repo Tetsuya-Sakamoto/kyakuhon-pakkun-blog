@@ -4,10 +4,39 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TableOfContents from "@/components/TableOfContents";
 import Link from "next/link";
+import type { JSX } from "react";
 
 const SITE_URL = "https://service.kyakuhon-pakkun.com";
 type Props = { params: Promise<{ slug: string }> };
+
+/** h2テキスト → アンカーID */
+function toId(text: string): string {
+  return text.trim().replace(/\s+/g, "-").replace(/[^\w぀-鿿゠-ヿ-]/g, "");
+}
+
+/** MDX本文からh2を抽出 */
+function extractHeadings(source: string) {
+  const matches = source.matchAll(/^## (.+)$/gm);
+  return Array.from(matches).map((m) => ({
+    text: m[1].trim(),
+    id: toId(m[1].trim()),
+  }));
+}
+
+/** h2にIDを自動付与するカスタムコンポーネント */
+const mdxComponents = {
+  h2: ({ children }: { children?: React.ReactNode }): JSX.Element => {
+    const text = String(children ?? "");
+    const id = toId(text);
+    return (
+      <h2 id={id} style={{ scrollMarginTop: "6rem" }}>
+        {children}
+      </h2>
+    );
+  },
+};
 
 export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
@@ -35,6 +64,8 @@ export default async function PostPage({ params }: Props) {
   const post = getPostBySlug(slug);
   if (!post) notFound();
   const { frontmatter: f, content } = post;
+
+  const headings = extractHeadings(content);
 
   const articleSchema = {
     "@context": "https://schema.org", "@type": "Article",
@@ -113,9 +144,12 @@ export default async function PostPage({ params }: Props) {
           )}
         </header>
 
-        {/* Content */}
+        {/* 目次 */}
+        <TableOfContents headings={headings} />
+
+        {/* Article content */}
         <div className="prose max-w-none">
-          <MDXRemote source={content} />
+          <MDXRemote source={content} components={mdxComponents} />
         </div>
 
         {/* CTA */}
