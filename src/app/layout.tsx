@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className="h-full">
-      <body className="min-h-full flex flex-col bg-white text-[#1a1a1a]">
+      <body className="min-h-full flex flex-col" style={{ background: "#0A0A0A", color: "#F2F2F2" }}>
         {children}
       </body>
     </html>

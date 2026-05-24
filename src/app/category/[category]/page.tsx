@@ -13,94 +13,91 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  return CATEGORIES.map((cat) => ({
-    category: encodeURIComponent(cat),
-  }));
+  return CATEGORIES.map((cat) => ({ category: encodeURIComponent(cat) }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category: encodedCategory } = await params;
   const category = decodeURIComponent(encodedCategory);
-
-  if (!CATEGORIES.includes(category as (typeof CATEGORIES)[number])) {
-    return {};
-  }
-
+  if (!CATEGORIES.includes(category as (typeof CATEGORIES)[number])) return {};
   return {
     title: `${category} | 脚本パックン ブログ`,
     description: `映像制作に関する「${category}」カテゴリの記事一覧です。`,
-    alternates: {
-      canonical: `${SITE_URL}/blog/category/${encodedCategory}/`,
-    },
+    alternates: { canonical: `${SITE_URL}/blog/category/${encodedCategory}/` },
   };
 }
 
 export default async function CategoryPage({ params }: Props) {
   const { category: encodedCategory } = await params;
   const category = decodeURIComponent(encodedCategory);
-
-  if (!CATEGORIES.includes(category as (typeof CATEGORIES)[number])) {
-    notFound();
-  }
+  if (!CATEGORIES.includes(category as (typeof CATEGORIES)[number])) notFound();
 
   const posts = getPostsByCategory(category);
 
   return (
     <>
       <Header />
-      <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-10">
-        {/* Breadcrumb */}
-        <nav className="text-sm text-[#666666] mb-6">
-          <Link href="/blog" className="hover:text-[#2196f3]">
-            ブログ
-          </Link>
-          <span className="mx-2">/</span>
-          <span>{category}</span>
-        </nav>
+      <main className="flex-1 max-w-5xl mx-auto w-full px-5">
 
-        <div className="mb-10">
-          <h1 className="text-3xl font-bold text-[#1a1a1a] mb-2">
+        {/* Hero */}
+        <section className="py-14 border-b" style={{ borderColor: "#1E1E1E" }}>
+          <nav className="flex items-center gap-2 text-xs mb-6" style={{ color: "#444" }}>
+            <Link href="/blog" className="hover:text-white transition-colors" style={{ color: "#555" }}>
+              Blog
+            </Link>
+            <span>/</span>
+            <span style={{ color: "#F2F2F2" }}>{category}</span>
+          </nav>
+          <p className="text-xs font-black tracking-widest uppercase mb-3" style={{ color: "#FFD60A" }}>
+            Category
+          </p>
+          <h1 className="font-black leading-none mb-2" style={{ fontSize: "clamp(2rem, 5vw, 3.2rem)", color: "#F2F2F2" }}>
             {category}
           </h1>
-          <p className="text-[#666666]">
-            「{category}」カテゴリの記事一覧（{posts.length}件）
+          <p className="text-sm mt-3" style={{ color: "#555" }}>
+            {posts.length}件の記事
           </p>
-        </div>
+        </section>
 
         {/* Category filter */}
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="flex flex-wrap gap-2 py-6 border-b" style={{ borderColor: "#1E1E1E" }}>
           <Link
             href="/blog"
-            className="px-4 py-1.5 rounded-full text-sm font-medium border border-[#e5e7eb] text-[#666666] hover:border-[#2196f3] hover:text-[#2196f3] transition-colors"
+            className="px-4 py-1.5 rounded text-xs font-bold uppercase tracking-wider"
+            style={{ background: "#141414", color: "#555", border: "1px solid #222" }}
           >
-            すべて
+            ALL
           </Link>
           {CATEGORIES.map((cat) => (
             <Link
               key={cat}
               href={`/blog/category/${encodeURIComponent(cat)}`}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+              className="px-4 py-1.5 rounded text-xs font-black uppercase tracking-wider transition-all"
+              style={
                 cat === category
-                  ? "bg-[#2196f3] text-white"
-                  : "border border-[#e5e7eb] text-[#666666] hover:border-[#2196f3] hover:text-[#2196f3]"
-              }`}
+                  ? { background: "#FFD60A", color: "#0A0A0A" }
+                  : { background: "#141414", color: "#555", border: "1px solid #222" }
+              }
             >
               {cat}
             </Link>
           ))}
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {posts.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
-
-        {posts.length === 0 && (
-          <p className="text-[#666666] text-center py-16">
-            このカテゴリにはまだ記事がありません。
-          </p>
-        )}
+        {/* Posts grid */}
+        <section className="py-10">
+          {posts.length > 0 ? (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => (
+                <PostCard key={post.slug} post={post} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-center py-24 text-sm" style={{ color: "#444" }}>
+              このカテゴリにはまだ記事がありません。
+            </p>
+          )}
+        </section>
       </main>
       <Footer />
     </>
