@@ -52,7 +52,7 @@ export default function BlogIndexPage() {
           </p>
           <h1
             className="font-black leading-none mb-5"
-            style={{ fontSize: "clamp(2rem, 5vw, 3.4rem)", color: "#111827", lineHeight: 1.1 }}
+            style={{ fontSize: "clamp(2rem, 5vw, 3.4rem)", color: "#111827", lineHeight: 1.25 }}
           >
             現場で使える<br />
             <span style={{

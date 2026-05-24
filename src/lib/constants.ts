@@ -1,2 +1,2 @@
-export const CATEGORIES = ["使い方", "業界知識", "事例", "ツール比較"] as const;
+export const CATEGORIES = ["ハウツー", "基礎知識", "導入事例", "ツール比較"] as const;
 export type Category = (typeof CATEGORIES)[number];

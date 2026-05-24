@@ -6,7 +6,7 @@ import { CATEGORIES, type Category } from "@/lib/constants";
 export default function AdminClient() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState<Category>("使い方");
+  const [category, setCategory] = useState<Category>("ハウツー");
   const [tags, setTags] = useState("");
   const [body, setBody] = useState("");
   const [copied, setCopied] = useState(false);
