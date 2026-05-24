@@ -5,6 +5,7 @@ import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TableOfContents from "@/components/TableOfContents";
+import Image from "next/image";
 import Link from "next/link";
 import type { JSX } from "react";
 
@@ -23,6 +24,19 @@ function extractHeadings(source: string) {
     text: m[1].trim(),
     id: toId(m[1].trim()),
   }));
+}
+
+/**
+ * MDXソースを「導入部（最初のh2より前）」と「本文（最初のh2以降）」に分割
+ * 導入 → 目次 → 本文 の構成を実現するため
+ */
+function splitIntroAndBody(source: string): { intro: string; body: string } {
+  const idx = source.search(/^## /m);
+  if (idx === -1) return { intro: source.trim(), body: "" };
+  return {
+    intro: source.slice(0, idx).trim(),
+    body: source.slice(idx),
+  };
 }
 
 /** h2にIDを自動付与するカスタムコンポーネント */
@@ -55,6 +69,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: f.title, description: f.description,
       url: `${SITE_URL}/blog/${slug}/`, siteName: "脚本パックン", type: "article",
       publishedTime: f.publishedAt, modifiedTime: f.updatedAt,
+      images: f.coverImage ? [{ url: `${SITE_URL}${f.coverImage}`, width: 1200, height: 630 }] : [],
     },
   };
 }
@@ -66,6 +81,7 @@ export default async function PostPage({ params }: Props) {
   const { frontmatter: f, content } = post;
 
   const headings = extractHeadings(content);
+  const { intro, body } = splitIntroAndBody(content);
 
   const articleSchema = {
     "@context": "https://schema.org", "@type": "Article",
@@ -75,6 +91,7 @@ export default async function PostPage({ params }: Props) {
     publisher: { "@type": "Organization", name: "脚本パックン", logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` } },
     url: `${SITE_URL}/blog/${slug}/`,
     mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/blog/${slug}/` },
+    ...(f.coverImage && { image: `${SITE_URL}${f.coverImage}` }),
   };
 
   const breadcrumbSchema = {
@@ -144,13 +161,43 @@ export default async function PostPage({ params }: Props) {
           )}
         </header>
 
-        {/* 目次 */}
+        {/* ヒーロー画像（coverImage がある場合） */}
+        {f.coverImage && (
+          <div className="mb-8 rounded-2xl overflow-hidden" style={{ aspectRatio: "16/9" }}>
+            <Image
+              src={f.coverImage}
+              alt={f.title}
+              width={1200}
+              height={675}
+              className="w-full h-full object-cover"
+              priority
+            />
+          </div>
+        )}
+
+        {/* 導入部（最初のh2より前のテキスト） */}
+        {intro && (
+          <div className="prose max-w-none mb-8">
+            <MDXRemote source={intro} components={mdxComponents} />
+          </div>
+        )}
+
+        {/* 目次（導入の後、本文の前） */}
         <TableOfContents headings={headings} />
 
-        {/* Article content */}
-        <div className="prose max-w-none">
-          <MDXRemote source={content} components={mdxComponents} />
-        </div>
+        {/* 本文（最初のh2から） */}
+        {body && (
+          <div className="prose max-w-none">
+            <MDXRemote source={body} components={mdxComponents} />
+          </div>
+        )}
+
+        {/* 導入のみで本文なし（h2なし記事）のフォールバック */}
+        {!body && !intro && (
+          <div className="prose max-w-none">
+            <MDXRemote source={content} components={mdxComponents} />
+          </div>
+        )}
 
         {/* CTA */}
         <div
