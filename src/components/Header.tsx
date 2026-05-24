@@ -3,35 +3,29 @@ import { CATEGORIES } from "@/lib/posts";
 
 export default function Header() {
   return (
-    <header style={{ borderBottom: "1px solid #1E2D45", background: "#080E1A" }}>
+    <header style={{ background: "#FFFFFF", borderBottom: "1px solid #E2E8F0" }}>
       <style>{`
-        .nav-link { color: #4A6080; transition: color 0.15s; }
-        .nav-link:hover { color: #42A5F5; }
+        .nav-link { color: #6B7280; transition: color 0.15s; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+        .nav-link:hover { color: #2196F3; }
       `}</style>
       <div className="max-w-5xl mx-auto px-5 py-4 flex items-center justify-between">
+        {/* Logo */}
         <Link href="/blog" className="flex items-center gap-2">
-          <span className="text-sm font-bold tracking-widest uppercase" style={{ color: "#4A6080" }}>
-            脚本パックン
-          </span>
-          <span style={{ color: "#1E2D45" }}>/</span>
-          <span className="font-black text-base tracking-tight" style={{ color: "#2196F3" }}>
-            Blog
-          </span>
+          <span className="text-sm font-bold" style={{ color: "#9CA3AF" }}>脚本パックン</span>
+          <span style={{ color: "#D1D5DB" }}>/</span>
+          <span className="font-black text-lg" style={{ color: "#2196F3" }}>Blog</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6">
+        {/* Nav */}
+        <nav className="hidden md:flex items-center gap-5">
           {CATEGORIES.map((cat) => (
-            <Link
-              key={cat}
-              href={`/blog/category/${encodeURIComponent(cat)}`}
-              className="nav-link text-xs font-medium tracking-wider uppercase"
-            >
+            <Link key={cat} href={`/blog/category/${encodeURIComponent(cat)}`} className="nav-link">
               {cat}
             </Link>
           ))}
           <Link
             href="https://service.kyakuhon-pakkun.com"
-            className="text-xs font-black px-3 py-1.5 rounded transition-opacity hover:opacity-80"
+            className="text-xs font-black px-4 py-2 rounded-full transition-all hover:opacity-90"
             style={{ background: "#2196F3", color: "#fff" }}
           >
             ツールを使う →
