@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/blog/` },
   openGraph: {
     title: "脚本パックン ブログ",
-    description: "映像制作の現場で役立つ情報を発信。香盤表・PPM資料・進行管理ツールの使い方から業界知識まで。",
+    description: "映像制作の現場で役立つ情報を発信。",
     url: `${SITE_URL}/blog/`,
     siteName: "脚本パックン",
     type: "website",
@@ -42,15 +42,21 @@ export default function BlogIndexPage() {
 
       <main className="flex-1 max-w-5xl mx-auto w-full px-5">
 
-        {/* Hero */}
-        <section className="py-16 border-b" style={{ borderColor: "#E2E8F0" }}>
-          <p className="text-xs font-black tracking-widest uppercase mb-4" style={{ color: "#2196F3" }}>
+        {/* ── Hero ── */}
+        <section className="pt-12 pb-10 border-b" style={{ borderColor: "#E2E8F0" }}>
+          <p
+            className="font-bold mb-3 tracking-widest uppercase"
+            style={{ fontSize: "0.7rem", color: "#2196F3", letterSpacing: "0.15em" }}
+          >
             映像制作の知識が、ここにある
           </p>
-          <h1 className="font-black leading-none mb-5" style={{ fontSize: "clamp(2.2rem, 5.5vw, 3.8rem)", color: "#111827" }}>
+          <h1
+            className="font-black leading-none mb-5"
+            style={{ fontSize: "clamp(2rem, 5vw, 3.4rem)", color: "#111827", lineHeight: 1.1 }}
+          >
             現場で使える<br />
             <span style={{
-              background: "linear-gradient(135deg, #2196F3, #42A5F5)",
+              background: "linear-gradient(135deg, #1E88E5, #42A5F5)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}>
@@ -58,14 +64,13 @@ export default function BlogIndexPage() {
             </span>
             を届ける。
           </h1>
-          <p className="max-w-lg text-sm leading-relaxed" style={{ color: "#6B7280" }}>
-            香盤表・PPM資料・進行管理——映像制作の現場が抱える課題に、
-            プロが実際に使う知識でアプローチします。
+          <p className="text-sm leading-relaxed" style={{ color: "#6B7280" }}>
+            {"香盤表・PPM資料・進行管理——映像制作の現場の課題に、プロが実際に使う知識でアプローチします。"}
           </p>
         </section>
 
-        {/* Category filter */}
-        <div className="flex flex-wrap gap-2 py-5 border-b" style={{ borderColor: "#E2E8F0" }}>
+        {/* ── Category filter ── */}
+        <div className="flex flex-wrap gap-2 py-4 border-b" style={{ borderColor: "#E2E8F0" }}>
           <Link
             href="/blog"
             className="px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider"
@@ -77,7 +82,7 @@ export default function BlogIndexPage() {
             <Link
               key={cat}
               href={`/blog/category/${encodeURIComponent(cat)}`}
-              className="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all"
+              className="px-4 py-1.5 rounded-full text-xs font-semibold transition-all hover:border-blue-400 hover:text-blue-500"
               style={{ background: "#FFFFFF", color: "#6B7280", border: "1.5px solid #E2E8F0" }}
             >
               {cat}
@@ -85,16 +90,16 @@ export default function BlogIndexPage() {
           ))}
         </div>
 
-        {/* Featured */}
+        {/* ── Featured ── */}
         {featured && (
-          <section className="py-8 border-b" style={{ borderColor: "#E2E8F0" }}>
+          <section className="pt-7 pb-7 border-b" style={{ borderColor: "#E2E8F0" }}>
             <PostCard post={featured} featured />
           </section>
         )}
 
-        {/* Grid */}
+        {/* ── Grid ── */}
         {rest.length > 0 && (
-          <section className="py-8 pb-16">
+          <section className="pt-7 pb-14">
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {rest.map((post) => (
                 <PostCard key={post.slug} post={post} />
@@ -104,7 +109,7 @@ export default function BlogIndexPage() {
         )}
 
         {posts.length === 0 && (
-          <p className="text-center py-24 text-sm" style={{ color: "#9CA3AF" }}>
+          <p className="text-center py-20 text-sm" style={{ color: "#9CA3AF" }}>
             記事はまだありません。
           </p>
         )}
