@@ -24,20 +24,18 @@ export default function Header() {
 
   return (
     <header style={{ background: "#fff", borderBottom: `1px solid ${LINE}`, position: "sticky", top: 0, zIndex: 50 }}>
-      <div style={{ maxWidth: 1024, margin: "0 auto", padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div className="site-container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 0" }}>
 
-        {/* Logo */}
-        <a href="https://service.kyakuhon-pakkun.com" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", flexShrink: 0 }}>
+        <a href="https://service.kyakuhon-pakkun.com/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
           <span style={{ fontFamily: WM, fontWeight: 900, fontSize: 26, letterSpacing: "-0.02em", color: PRIM, lineHeight: 1, fontFeatureSettings: '"palt"', whiteSpace: "nowrap" }}>
             脚本パックン
           </span>
-          <span className="blog-hide-sm" style={{ fontSize: 11, color: MUTED, fontWeight: 600, borderLeft: `1px solid ${LINE}`, paddingLeft: 10, fontFamily: HD, whiteSpace: "nowrap" }}>
+          <span className="hide-sm" style={{ fontSize: 11, color: MUTED, fontWeight: 600, borderLeft: `1px solid ${LINE}`, paddingLeft: 10, fontFamily: HD, whiteSpace: "nowrap" }}>
             香盤AI生成ツール
           </span>
         </a>
 
-        {/* Desktop Nav */}
-        <nav className="blog-header-nav" style={{ display: "flex", alignItems: "center", gap: 28 }}>
+        <nav className="header-nav" style={{ alignItems: "center", gap: 28 }}>
           {links.map((l, i) => (
             <a
               key={l.href}
@@ -50,8 +48,7 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Desktop CTA */}
-        <div className="blog-header-cta" style={{ display: "flex", alignItems: "center", gap: 20, flexShrink: 0 }}>
+        <div className="header-cta" style={{ alignItems: "center", gap: 20 }}>
           <a href="https://kyakuhon-pakkun.com" style={{ color: SUB, textDecoration: "none", fontSize: 13, fontFamily: HD, fontWeight: 600, whiteSpace: "nowrap" }}>
             ログイン
           </a>
@@ -63,11 +60,10 @@ export default function Header() {
           </a>
         </div>
 
-        {/* Mobile burger */}
         <button
+          className="header-burger"
           onClick={() => setOpen(!open)}
-          className="blog-header-burger"
-          style={{ display: "none", background: "transparent", border: "none", padding: 8, cursor: "pointer" }}
+          style={{ background: "transparent", border: "none", padding: 8, cursor: "pointer" }}
           aria-label="メニュー"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={INK} strokeWidth="2">
@@ -76,10 +72,9 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
         <div style={{ borderTop: `1px solid ${LINE}`, padding: "16px 0", background: "#fff" }}>
-          <div style={{ maxWidth: 1180, margin: "0 auto", padding: "0 22px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div className="site-container" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {links.map((l, i) => (
               <a key={l.href} href={l.href} style={{ display: "flex", alignItems: "baseline", gap: 8, color: INK, textDecoration: "none", fontFamily: HD, fontWeight: 700, fontSize: 18 }}>
                 <span style={{ fontSize: 11, color: FAINT, fontFamily: MN }}>0{i + 1}</span>

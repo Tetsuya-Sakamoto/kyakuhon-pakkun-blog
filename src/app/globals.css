@@ -132,15 +132,21 @@ a { color: inherit; text-decoration: none; }
   margin-top: 0 !important;
 }
 
-/* ─── Blog Header responsive ────────────── */
-.blog-header-nav  { display: flex; }
-.blog-header-cta  { display: flex; }
-.blog-header-burger { display: none !important; }
-.blog-hide-sm { display: inline-block; }
+/* ─── Header / Layout (service site 同一定義) ─── */
+.site-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+.hide-sm { display: inline-block; }
+.header-nav  { display: flex; }
+.header-cta  { display: flex; }
+.header-burger { display: none !important; }
 
 @media (max-width: 900px) {
-  .blog-header-nav    { display: none !important; }
-  .blog-header-cta    { display: none !important; }
-  .blog-header-burger { display: inline-flex !important; }
-  .blog-hide-sm       { display: none !important; }
+  .site-container { padding-left: 22px; padding-right: 22px; }
+  .header-nav, .header-cta { display: none !important; }
+  .header-burger { display: inline-flex !important; }
+  .hide-sm { display: none !important; }
 }
