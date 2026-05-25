@@ -44,11 +44,11 @@ export default function BlogIndexPage() {
 
         {/* ── Hero ── */}
         <section className="pt-12 pb-10 border-b" style={{ borderColor: "#E5E7EB" }}>
-          <p style={{ fontSize: 12, fontWeight: 700, color: "#2196F3", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Noto Sans JP', sans-serif" }}>
+          <span style={{ display: "inline-block", fontSize: "0.75rem", fontWeight: 800, color: "#2196F3", letterSpacing: "0.2em", background: "#E3F2FD", padding: "8px 18px", borderRadius: 30, marginBottom: 20, fontFamily: "'Noto Sans JP', sans-serif", textTransform: "uppercase" }}>
             BLOG
-          </p>
-          <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.2rem)", fontWeight: 800, color: "#0F172A", lineHeight: 1.3, letterSpacing: "-0.015em", marginBottom: 20, fontFeatureSettings: '"palt"' }}>
-            脚本パックン<span style={{ color: "#2196F3" }}>ブログ</span>
+          </span>
+          <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.2rem)", fontWeight: 900, color: "#0F172A", lineHeight: 1.3, letterSpacing: "-0.02em", marginBottom: 16, fontFeatureSettings: '"palt"' }}>
+            ブログ
           </h1>
           <p style={{ fontSize: 15, color: "#6B7280", lineHeight: 1.8 }}>
             {"香盤表・PPM資料・進行管理——映像制作の現場の課題に、プロが実際に使う知識でアプローチします。"}
