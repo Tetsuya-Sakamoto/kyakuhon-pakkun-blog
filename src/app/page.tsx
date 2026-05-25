@@ -72,7 +72,7 @@ export default function BlogIndexPage() {
         {/* ── Category filter ── */}
         <div className="flex flex-wrap gap-2 py-4 border-b" style={{ borderColor: "#E2E8F0" }}>
           <Link
-            href="/blog"
+            href="/"
             className="px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider"
             style={{ background: "#2196F3", color: "#fff" }}
           >
@@ -81,7 +81,7 @@ export default function BlogIndexPage() {
           {CATEGORIES.map((cat) => (
             <Link
               key={cat}
-              href={`/blog/category/${encodeURIComponent(cat)}`}
+              href={`/category/${encodeURIComponent(cat)}`}
               className="px-4 py-1.5 rounded-full text-xs font-semibold transition-all hover:border-blue-400 hover:text-blue-500"
               style={{ background: "#FFFFFF", color: "#6B7280", border: "1.5px solid #E2E8F0" }}
             >

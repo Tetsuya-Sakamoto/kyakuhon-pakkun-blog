@@ -113,10 +113,10 @@ export default async function PostPage({ params }: Props) {
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 mb-6" style={{ fontSize: "0.7rem", color: "#9CA3AF" }}>
-          <Link href="/blog" className="hover:text-blue-500 transition-colors">Blog</Link>
+          <Link href="/" className="hover:text-blue-500 transition-colors">Blog</Link>
           <span style={{ color: "#D1D5DB" }}>/</span>
           <Link
-            href={`/blog/category/${encodeURIComponent(f.category)}`}
+            href={`/category/${encodeURIComponent(f.category)}`}
             className="hover:text-blue-500 transition-colors"
           >
             {f.category}
@@ -228,7 +228,7 @@ export default async function PostPage({ params }: Props) {
         {/* Back */}
         <div className="mt-8 pt-7 border-t" style={{ borderColor: "#E2E8F0" }}>
           <Link
-            href="/blog"
+            href="/"
             className="text-sm font-bold hover:opacity-70 transition-opacity"
             style={{ color: "#2196F3" }}
           >

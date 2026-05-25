@@ -16,7 +16,27 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ja" className="h-full">
-      <body className="min-h-full flex flex-col" style={{ background: "#F5F7FA", color: "#111827" }}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=M+PLUS+Rounded+1c:wght@500;700;800;900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body
+        className="min-h-full flex flex-col"
+        style={{
+          background: "#FAFAF7",
+          color: "#0F172A",
+          fontFamily: "'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif",
+          fontFeatureSettings: '"palt"',
+          WebkitFontSmoothing: "antialiased",
+          wordBreak: "keep-all",
+          lineBreak: "strict",
+          overflowWrap: "break-word",
+        } as React.CSSProperties}
+      >
         {children}
       </body>
     </html>

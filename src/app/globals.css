@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #F5F7FA;
+  --bg: #FAFAF7;
   --surface: #FFFFFF;
   --surface2: #EEF2F7;
   --border: #E2E8F0;
-  --text: #111827;
-  --subtext: #6B7280;
+  --text: #0F172A;
+  --subtext: #374151;
   --accent: #2196F3;
   --accent-dark: #1565C0;
   --accent-light: #E3F2FD;
@@ -19,9 +19,12 @@ html { background-color: var(--bg); }
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  font-feature-settings: "palt";
+  word-break: keep-all;
+  line-break: strict;
+  overflow-wrap: break-word;
 }
 
 a { color: inherit; text-decoration: none; }
