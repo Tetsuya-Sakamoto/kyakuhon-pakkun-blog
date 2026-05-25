@@ -72,8 +72,8 @@ export default function PostCard({ post, featured = false }: Props) {
               </span>
             </div>
             <h2
-              className="font-black leading-snug mb-3 transition-colors"
-              style={{ fontSize: "1.4rem", color: hovered ? "#2196F3" : "#111827", lineHeight: 1.35 }}
+              className="leading-snug mb-3 transition-colors"
+              style={{ fontSize: "1.35rem", fontWeight: 800, color: hovered ? "#2196F3" : "#0F172A", lineHeight: 1.35, letterSpacing: "-0.015em" }}
             >
               {f.title}
             </h2>
@@ -137,8 +137,8 @@ export default function PostCard({ post, featured = false }: Props) {
             <time className="text-xs" style={{ color: "#9CA3AF" }}>{f.publishedAt}</time>
           </div>
           <h2
-            className="font-bold leading-snug flex-1 transition-colors"
-            style={{ fontSize: "0.95rem", color: hovered ? "#2196F3" : "#111827", lineHeight: 1.5 }}
+            className="leading-snug flex-1 transition-colors"
+            style={{ fontSize: "0.95rem", fontWeight: 700, color: hovered ? "#2196F3" : "#0F172A", lineHeight: 1.5, letterSpacing: "-0.01em" }}
           >
             {f.title}
           </h2>

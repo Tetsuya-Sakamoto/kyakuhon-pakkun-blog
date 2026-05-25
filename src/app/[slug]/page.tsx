@@ -132,8 +132,8 @@ export default async function PostPage({ params }: Props) {
             {f.category}
           </span>
           <h1
-            className="font-black leading-tight mb-4"
-            style={{ fontSize: "clamp(1.5rem, 3.5vw, 2rem)", color: "#111827", lineHeight: 1.3 }}
+            className="leading-tight mb-4"
+            style={{ fontSize: "clamp(1.5rem, 3.5vw, 2rem)", fontWeight: 800, color: "#0F172A", lineHeight: 1.3, letterSpacing: "-0.015em", fontFeatureSettings: '"palt"' }}
           >
             {f.title}
           </h1>
