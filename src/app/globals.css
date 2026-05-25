@@ -125,3 +125,16 @@ a { color: inherit; text-decoration: none; }
 .prose > :first-child {
   margin-top: 0 !important;
 }
+
+/* ─── Blog Header responsive ────────────── */
+.blog-header-nav  { display: flex; }
+.blog-header-cta  { display: flex; }
+.blog-header-burger { display: none !important; }
+.blog-hide-sm { display: inline-block; }
+
+@media (max-width: 900px) {
+  .blog-header-nav    { display: none !important; }
+  .blog-header-cta    { display: none !important; }
+  .blog-header-burger { display: inline-flex !important; }
+  .blog-hide-sm       { display: none !important; }
+}
