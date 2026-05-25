@@ -45,11 +45,10 @@ export default function BlogIndexPage() {
         {/* ── Hero ── */}
         <section className="pt-12 pb-10 border-b" style={{ borderColor: "#E5E7EB" }}>
           <p style={{ fontSize: 12, fontWeight: 700, color: "#2196F3", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Noto Sans JP', sans-serif" }}>
-            映像制作の知識が、ここにある
+            BLOG
           </p>
           <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.2rem)", fontWeight: 800, color: "#0F172A", lineHeight: 1.3, letterSpacing: "-0.015em", marginBottom: 20, fontFeatureSettings: '"palt"' }}>
-            現場で使える<br />
-            <span style={{ color: "#2196F3" }}>知識と実践</span>を届ける。
+            脚本パックン<span style={{ color: "#2196F3" }}>ブログ</span>
           </h1>
           <p style={{ fontSize: 15, color: "#6B7280", lineHeight: 1.8 }}>
             {"香盤表・PPM資料・進行管理——映像制作の現場の課題に、プロが実際に使う知識でアプローチします。"}
