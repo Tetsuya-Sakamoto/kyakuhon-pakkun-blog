@@ -1,47 +1,39 @@
-import Link from "next/link";
-
+const PRIM = "#2196F3";
+const SUB = "#374151";
+const MUTED = "#6B7280";
+const FAINT = "#9CA3AF";
+const LINE = "#E5E7EB";
+const HD = "'Noto Sans JP', sans-serif";
 const WM = "'M PLUS Rounded 1c', sans-serif";
+
+const links = [
+  { l: "利用規約",             h: "https://service.kyakuhon-pakkun.com/terms" },
+  { l: "プライバシーポリシー",  h: "https://service.kyakuhon-pakkun.com/privacy" },
+  { l: "特定商取引法に基づく表記", h: "https://service.kyakuhon-pakkun.com/tokushoho" },
+  { l: "お問い合わせ",          h: "https://service.kyakuhon-pakkun.com/contact" },
+];
 
 export default function Footer() {
   return (
-    <footer className="mt-auto" style={{ borderTop: "1px solid #E5E7EB", background: "#F8F8F4" }}>
-      <div className="max-w-5xl mx-auto px-5 py-10">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
+    <footer style={{ background: "#F8F8F4", color: SUB, padding: "60px 0 40px", borderTop: `1px solid ${LINE}` }}>
+      <div style={{ maxWidth: 1180, margin: "0 auto", padding: "0 32px" }}>
+        <div className="blog-footer-grid" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 40, flexWrap: "wrap" }}>
           <div>
-            <Link href="https://service.kyakuhon-pakkun.com" className="inline-block mb-2" style={{ textDecoration: "none" }}>
-              <span style={{ fontFamily: WM, fontWeight: 900, fontSize: "1.1rem", color: "#2196F3" }}>
+            <a href="https://service.kyakuhon-pakkun.com" style={{ textDecoration: "none" }}>
+              <span style={{ fontFamily: WM, fontWeight: 900, fontSize: 26, letterSpacing: "-0.02em", color: PRIM, lineHeight: 1, fontFeatureSettings: '"palt"', display: "inline-block" }}>
                 脚本パックン
               </span>
-            </Link>
-            <p style={{ fontSize: "0.75rem", lineHeight: 1.7, color: "#9CA3AF", maxWidth: "240px" }}>
-              映像制作の香盤表・PPM資料・進行管理を<br />ひとつのツールでまとめて。
-            </p>
+            </a>
+            <div style={{ fontFamily: HD, fontSize: 12, color: MUTED, marginTop: 8 }}>香盤AI生成ツール</div>
           </div>
-          <div className="flex flex-col gap-2" style={{ fontSize: "0.75rem", color: "#9CA3AF" }}>
-            <Link href="/" className="hover:text-blue-500 transition-colors" style={{ textDecoration: "none" }}>ブログトップ</Link>
-            <Link href="https://service.kyakuhon-pakkun.com" className="hover:text-blue-500 transition-colors" style={{ textDecoration: "none" }}>サービスサイト</Link>
+          <div style={{ display: "flex", gap: 32, fontSize: 13, fontFamily: HD, flexWrap: "wrap" }}>
+            {links.map(({ l, h }) => (
+              <a key={l} href={h} style={{ color: SUB, textDecoration: "none", fontWeight: 500 }}>{l}</a>
+            ))}
           </div>
         </div>
-        <div className="pt-6 border-t flex items-center justify-between" style={{ borderColor: "#F3F4F6" }}>
-          <p style={{ fontSize: "0.7rem", color: "#D1D5DB" }}>
-            © {new Date().getFullYear()} 脚本パックン
-          </p>
-          <Link
-            href="https://kyakuhon-pakkun.com"
-            className="transition-all hover:opacity-85"
-            style={{
-              fontFamily: "'Noto Sans JP', sans-serif",
-              fontSize: "0.75rem",
-              fontWeight: 800,
-              padding: "8px 18px",
-              borderRadius: "9999px",
-              background: "#2196F3",
-              color: "#fff",
-              textDecoration: "none",
-            }}
-          >
-            無料で使う →
-          </Link>
+        <div style={{ borderTop: `1px solid ${LINE}`, marginTop: 40, paddingTop: 20, fontSize: 11, color: FAINT, fontFamily: HD }}>
+          <span style={{ whiteSpace: "nowrap" }}>© 2026 脚本パックン</span>
         </div>
       </div>
     </footer>
